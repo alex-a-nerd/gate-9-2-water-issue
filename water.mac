@@ -1,0 +1,56 @@
+/gate/geometry/setMaterialDatabase GateMaterials.db
+
+/gate/world/geometry/setXLength 3500.0 mm
+/gate/world/geometry/setYLength 3500.0 mm
+/gate/world/geometry/setZLength 3500.0 mm
+
+/gate/world/daughters/name phantom
+/gate/world/daughters/insert box
+/gate/phantom/geometry/setXLength 200.0 mm
+/gate/phantom/geometry/setYLength 200.0 mm
+/gate/phantom/geometry/setZLength 160.0 mm
+/gate/phantom/setMaterial Water
+
+/gate/world/daughters/name detectorContainer
+/gate/world/daughters/systemType scanner
+/gate/world/daughters/insert box
+/gate/detectorContainer/geometry/setXLength 450.0 mm
+/gate/detectorContainer/geometry/setYLength 450.0 mm
+/gate/detectorContainer/geometry/setZLength 450.0 mm
+/gate/detectorContainer/placement/setTranslation 0 0 450 mm
+/gate/detectorContainer/setMaterial Air
+
+/gate/detectorContainer/daughters/name detector
+/gate/detectorContainer/daughters/insert box
+/gate/detector/geometry/setXLength 200.0 mm
+/gate/detector/geometry/setYLength 200.0 mm
+/gate/detector/geometry/setZLength 1.0 mm
+/gate/detector/setMaterial Silicon
+
+/gate/detector/attachCrystalSD
+
+
+/gate/physics/addPhysicsList QBBC_EMZ
+
+/gate/run/initialize
+
+/gate/source/addSource beam PencilBeam
+/gate/source/beam/setEnergy 230 MeV
+/gate/source/beam/setSigmaEnergy 0 MeV
+/gate/source/beam/setPosition 0 0 -500 mm
+/gate/source/beam/setSigmaX 2 mm
+/gate/source/beam/setSigmaY 2 mm
+/gate/source/beam/setSigmaTheta 2.5 mrad
+/gate/source/beam/setSigmaPhi 2.5 mrad
+/gate/source/beam/setRotationAxis 0 1 0
+/gate/source/beam/setRotationAngle 0 rad
+/gate/source/beam/setEllipseXThetaEmittance 3 mm*mrad
+/gate/source/beam/setEllipseXThetaRotationNorm negative
+/gate/source/beam/setEllipseYPhiEmittance 3 mm*mrad
+/gate/source/beam/setEllipseYPhiRotationNorm negative
+/gate/source/beam/setParticleType proton
+
+/gate/output/allowNoOutput
+
+/gate/application/setTotalNumberOfPrimaries 1
+/gate/application/start
